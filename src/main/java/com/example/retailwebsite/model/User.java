@@ -1,17 +1,20 @@
 package com.example.retailwebsite.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name="username")
+    @Column(name="name")
     private String name;
 
     @Column(name="password")
@@ -27,12 +30,13 @@ public class User {
     private boolean affiliated;
 
     @Column(name="createDate")
+    @JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss")
     private Date createDate;
 
     public User() {
     }
-    public User(long id, String name, String password, boolean hascard, String cardType, boolean affiliated, Date createDate) {
-        this.id = id;
+    public User( String name, String password, boolean hascard, String cardType, boolean affiliated, Date createDate) {
+
         this.name = name;
         this.password = password;
         this.hascard = hascard;
@@ -40,7 +44,6 @@ public class User {
         this.affiliated = affiliated;
         this.createDate = createDate;
     }
-
 
     public long getId() {
         return id;
