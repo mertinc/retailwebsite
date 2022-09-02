@@ -33,6 +33,20 @@ public class User {
     @JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss")
     private Date createDate;
 
+    @OneToOne(orphanRemoval = true)
+    @JoinTable(name = "users_shoppingcart",
+            joinColumns = @JoinColumn(name = "user_null"),
+            inverseJoinColumns = @JoinColumn(name = "shoppingcart_id"))
+    private Shoppingcart shoppingcart;
+
+    public Shoppingcart getShoppingcart() {
+        return shoppingcart;
+    }
+
+    public void setShoppingcart(Shoppingcart shoppingcart) {
+        this.shoppingcart = shoppingcart;
+    }
+
     public User() {
     }
     public User( String name, String password, boolean hascard, String cardType, boolean affiliated, Date createDate) {

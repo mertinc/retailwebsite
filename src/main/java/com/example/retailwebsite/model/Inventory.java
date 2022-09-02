@@ -18,6 +18,18 @@ public class Inventory {
     @Column(name = "stock")
     private boolean stock;
 
+    @ManyToOne
+    @JoinColumn(name = "shoppingcart_id")
+    private Shoppingcart shoppingcart;
+
+    public Shoppingcart getShoppingcart() {
+        return shoppingcart;
+    }
+
+    public void setShoppingcart(Shoppingcart shoppingcart) {
+        this.shoppingcart = shoppingcart;
+    }
+
     public Inventory() {
     }
 
